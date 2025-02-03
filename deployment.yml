@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: flask-app-container
-        image: reshma98/flask-pipeline:IMAGE_TAG
+        image: reshma98/flask-pipeline
         resources:
           limits:
             memory: "128Mi"
