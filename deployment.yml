@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: flask-app-deploy
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: flask-app
@@ -13,10 +14,14 @@ spec:
     spec:
       containers:
       - name: flask-app-container
-        image: reshma98/flask-pipeline
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        image: reshma98/flask-pipeline:latest  # Ensure the correct tag is used
+        imagePullPolicy: Always  # Ensures latest image is pulled
         ports:
-        - containerPort: 5000
+          - containerPort: 8080
+        env:
+          - name: PORT
+            value: "8080"
+      restartPolicy: Always  # Ensures containers restart if they fail
+
+
+        
